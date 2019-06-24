@@ -1,24 +1,16 @@
 const fs = require('fs-extra')
 const axios = require('axios')
+const writeData = require('./writeData')
 
 const url = 'http://localhost:1337/temas?nome=default'
 
 module.exports = function fetchData() {
-    //writeData writes the data to a file given the path
+  //writeData writes the data to a file given the path
   //Same as in previous solution
-  const writeData = (path, data) => {
-    return new Promise((resolve, reject) => {
-      try {
-        fs.ensureFileSync(path)
-        fs.writeJson(path, data, resolve(`${path} Write Successful`))
-        } catch (e) {
-          console.error(`${path} Write failed. ${e}`)
-          reject(`${path} Write Failed. ${e}`)
-        }
-      })
-    }
 
     const getData = async builder => {
+      console.log('api:scrapperbuilder');
+      return;
       fs.emptyDir('static/data')
       console.log(`STARTING JSON BUILD FOR ${URL}...`)
       const fetcher = []
@@ -30,8 +22,6 @@ module.exports = function fetchData() {
       if (!fs.pathExistsSync(basePath)) fs.emptyDir(basePath)
       let fileName = `${basePath}/data.json`
       console.log(`PROCESSING ${fileName}...`)
-
-      // Write list to file
       fetcher.push(writeData(fileName, { content: allRecipes.data }))
 
       // Loop through list

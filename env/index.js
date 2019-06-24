@@ -1,4 +1,2 @@
-export default () => {
-  const env = process.env.NODE_ENV || 'development'
-  return require(`./${env}`)
-}
+const env = process.env.NODE_ENV || 'development'
+module.exports  = require(`./${env}.js`)

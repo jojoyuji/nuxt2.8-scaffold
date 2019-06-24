@@ -58,13 +58,17 @@ const defaultConfig = {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://github.com/nuxt-community/axios-module#usage
-    ['@nuxtjs/axios', {
-      baseURL: (process.env.NODE_ENV === 'production') ? 'https://sinapsy.herokuapp.com/' : 'http://localhost:1337/',
-    }],
-    '@bazzite/nuxt-netlify',
-    //'~/modules/apiscrapper'
+    '~/modules/api',
+    '@nuxtjs/axios',
+    '@bazzite/nuxt-netlify'
   ],
+  api: {
+    endpoints:  [
+      'todos',
+      'users',
+      'posts',
+    ]
+  },
   netlify: {
     redirects:[
       {
@@ -77,9 +81,9 @@ const defaultConfig = {
   /*
   ** Axios module configuration
   */
-  axios: {
-    // See https://github.com/nuxt-community/axios-module#options
-  },
+  // axios: {
+  // See https://github.com/nuxt-community/axios-module#options
+  // },
   router: { },
   /*
   ** Build configuration
@@ -103,3 +107,4 @@ const defaultConfig = {
 }
 
 module.exports = {...defaultConfig, ...envConfig }
+
