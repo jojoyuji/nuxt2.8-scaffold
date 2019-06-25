@@ -2,7 +2,9 @@
   <div class="container">
     <h1 class="text-center p-8">Nuxt 2.8 scaffold</h1>
     <div v-if="todos.loading"> loading</div>
-    <ul v-else>
+    <ul
+      v-else
+      class="shadow">
       <li
         v-for="(t, index) in todos.items"
         :key="index">
