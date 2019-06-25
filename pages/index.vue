@@ -22,7 +22,7 @@ export default {
     }
   },
   async fetch({store}) {
-   await store.dispatch('todos/index','dyn');
+   await store.dispatch('todos/index','static');
   },
 }
 </script>

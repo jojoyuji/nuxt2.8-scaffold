@@ -62,6 +62,7 @@ const defaultConfig = {
         '@bazzite/nuxt-netlify'
         ],
         api: {
+          staticPath: 'static/data',
           endpoints:  [
             'todos',
             'users',

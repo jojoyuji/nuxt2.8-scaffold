@@ -25,6 +25,7 @@ export default function nuxtAPI (moduleOptions) {
   this.addPlugin({
     src: path.resolve(__dirname, 'plugin.js'),
     options: {
+      staticPath: options.staticPath,
       paths: options.endpoints
     }
   })
@@ -46,7 +47,7 @@ export default function nuxtAPI (moduleOptions) {
     options.endpoints.forEach(async (endpoint) => {
       let fetcher = []
       const currentEndpoint = await http.get(endpoint)
-      const basePath = `static/data/${endpoint}`
+      const basePath = `${options.staticPath}/${endpoint}`
       if (!fs.pathExistsSync(basePath)) fs.emptyDir(basePath)
       let fileName = `${basePath}/data.json`
       console.log(`PROCESSING ${fileName}...`)
@@ -57,7 +58,7 @@ export default function nuxtAPI (moduleOptions) {
     return;
 
     const allRecipes = await http.get(url)
-    const basePath = `static/data/recipes`
+    const basePath = `${options.staticPath}/recipes`
     if (!fs.pathExistsSync(basePath)) fs.emptyDir(basePath)
     let fileName = `${basePath}/data.json`
     console.log(`PROCESSING ${fileName}...`)
