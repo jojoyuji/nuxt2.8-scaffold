@@ -5,18 +5,6 @@ const axios = require('axios')
 
 // const url = 'http://localhost:1337/temas?nome=default'
 
-const writeData = (path, data) => {
-return new Promise((resolve, reject) => {
-  try {
-    fs.ensureFileSync(path)
-    fs.writeJson(path, data, resolve(`${path} Write Successful`))
-    } catch (e) {
-      console.error(`${path} Write failed. ${e}`)
-      reject(`${path} Write Failed. ${e}`)
-    }
-  })
-}
-
 export default function nuxtAPI (moduleOptions) {
   //is aware of api:
   const options = Object.assign({}, this.options.api, moduleOptions)
@@ -38,7 +26,20 @@ export default function nuxtAPI (moduleOptions) {
    ************/
 
 
+  const writeData = (path, data) => {
+  return new Promise((resolve, reject) => {
+    try {
+      fs.ensureFileSync(path)
+      fs.writeJson(path, data, resolve(`${path} Write Successful`))
+      } catch (e) {
+        console.error(`${path} Write failed. ${e}`)
+        reject(`${path} Write Failed. ${e}`)
+      }
+    })
+  }
+
   const http = axios.create(this.options.axios || {baseURL: ''})
+
 
   const getData = async builder => {
 

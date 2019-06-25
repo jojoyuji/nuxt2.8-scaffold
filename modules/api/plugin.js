@@ -2,7 +2,7 @@ const createRepository = require('@/modules/api/createRepo.js');
 
 
 export default function api(ctx, inject)  {
-  const options = <%= JSON.stringify(options, null, 2) %>;
+  const options = JSON.parse(`<%= JSON.stringify(options, null, 2) %>`);
 
   const repositoryWithAxios = createRepository(ctx.$axios)
   let repositories = {};
