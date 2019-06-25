@@ -10,7 +10,8 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "storybook": "start-storybook"
   },
   "dependencies": {
     "@bazzite/nuxt-netlify": "^0.1.1",
@@ -19,8 +20,10 @@
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
+    "@storybook/vue": "^5.1.9",
     "autoprefixer": "^8.6.4",
     "babel-eslint": "^8.2.1",
+    "babel-preset-vue": "^2.0.2",
     "eslint": "^5.0.1",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-vue": "^4.0.0",
