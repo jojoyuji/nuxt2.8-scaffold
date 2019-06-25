@@ -13,13 +13,10 @@ export const mutations = {
 }
 
 export const actions = {
-  async getTodos({commit}) {
+  async index({commit}, fetchType) {
     commit('loading', true)
-    console.log('getTodos');
-    let result = await this.$api.todos.index();
-    commit('setTodos', result);
+    let result = await this.$api.fetcher({entity: 'todos', type: fetchType})
+    commit('setTodos', result)
     commit('loading', false)
-
-    return state.todos
   }
 }

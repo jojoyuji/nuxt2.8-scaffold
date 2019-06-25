@@ -1,24 +1,4 @@
-const createRepository =  $axios  => resource => ({
-  index() {
-    return $axios.$get(`/${resource}`)
-  },
-  create(payload) {
-    return $axios.$post(`/${resource}`, payload)
-  },
-
-  show(id) {
-    return $axios.$get(`/${resource}/${id}`)
-  },
-
-  update(payload) {
-    return $axios.$put(`/${resource}`, payload)
-  },
-
-  delete(id) {
-    return $axios.$delete(`/${resource}/${id}`)
-  }
-
-})
+const createRepository = require('@/modules/api/createRepo.js');
 
 
 export default function api(ctx, inject)  {
@@ -29,6 +9,16 @@ export default function api(ctx, inject)  {
   for (var i=0; i < options.paths.length; i++) {
     repositories[options.paths[i]] = repositoryWithAxios(options.paths[i]);
   }
+
+  // adds fetcher helper to make json or http req
+  repositories.fetcher = async ({entity, type}) => {
+    if(type === 'static') {
+      let json = require(`~/static/data/${entity}/data.json`)
+      return json.content;
+    }
+    return await repositories[entity].index();
+  }
+
   inject('api', repositories)
 }
 

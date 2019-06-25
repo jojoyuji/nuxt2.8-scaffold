@@ -1,6 +1,16 @@
 const fs = require('fs-extra')
 const axios = require('axios')
-const writeData = require('./writeData')
+const writeData = (path, data) => {
+return new Promise((resolve, reject) => {
+  try {
+    fs.ensureFileSync(path)
+    fs.writeJson(path, data, resolve(`${path} Write Successful`))
+    } catch (e) {
+      console.error(`${path} Write failed. ${e}`)
+      reject(`${path} Write Failed. ${e}`)
+    }
+  })
+}
 
 const url = 'http://localhost:1337/temas?nome=default'
 

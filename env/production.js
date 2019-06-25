@@ -1,5 +1,5 @@
 module.exports = {
   axios: {
-    baseURL: 'https://api.prod.url'
+    baseURL: 'https://jsonplaceholder.typicode.com/'
   }
 }
