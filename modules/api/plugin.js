@@ -11,7 +11,7 @@ export default function api(ctx, inject)  {
   }
 
   // adds fetcher helper to make json or http req
-  repositories.fetcher = async ({entity, type}) => {
+  repositories.fetchJSON = async ({entity, type}) => {
     if(type === 'static') {
       let json = require(`~/${options.staticPath}/${entity}/data.json`)
       return json.content;
