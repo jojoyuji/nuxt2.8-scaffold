@@ -6,10 +6,8 @@ export default function api(ctx, inject)  {
 
   const repositoryWithAxios = createRepository(ctx.$axios)
   let repositories = {};
-  console.log(options);
-  if(options.resources.length) {
+  if(options.resources && options.resources.length) {
     options.resources.forEach((item, index) =>{
-      console.log(item);
       if(typeof item === 'object') {
         repositories[item.name] = repositoryWithAxios(item.path);
       }

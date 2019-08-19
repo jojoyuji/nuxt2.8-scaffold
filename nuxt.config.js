@@ -3,7 +3,8 @@ const envConfig = require('./env')
 
 const defaultConfig = {
   dev: (process.env.NDE_ENV !== 'production'),
-  mode: 'spa',
+  // mode: 'spa',
+  mode: 'universal',
   /*
    ** Headers of the page
    */

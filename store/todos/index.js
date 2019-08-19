@@ -5,7 +5,7 @@ const initial = () => {
   }
 }
 // initial state
-export const state = initial()
+export const state = () => initial()
 export const mutations = {
   RESET (state) {
     Object.assign(state, initial())

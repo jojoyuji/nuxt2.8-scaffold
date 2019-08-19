@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <h1 class="text-center p-8">Nuxt 2.8 scaffold</h1>
+    {{ renderFrom }}
+    <nuxt-link to="/hello"> hello </nuxt-link>
+
     <div v-if="todos.loading"> loading</div>
     <ul
       v-else
@@ -18,6 +21,14 @@
 
 
 export default {
+  asyncData(context) {
+    return {
+      renderFrom: process.server ? 'server' : 'client'
+    }
+  },
+  data() {
+    return { }
+  },
   computed: {
     todos() {
      return this.$store.state.todos;
