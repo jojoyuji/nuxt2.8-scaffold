@@ -6,8 +6,17 @@ export default function api(ctx, inject)  {
 
   const repositoryWithAxios = createRepository(ctx.$axios)
   let repositories = {};
-  for (var i=0; i < options.paths.length; i++) {
-    repositories[options.paths[i]] = repositoryWithAxios(options.paths[i]);
+  console.log(options);
+  if(options.resources.length) {
+    options.resources.forEach((item, index) =>{
+      console.log(item);
+      if(typeof item === 'object') {
+        repositories[item.name] = repositoryWithAxios(item.path);
+      }
+      else{
+        repositories[item] = repositoryWithAxios(item);
+      }
+    })
   }
 
   // adds fetcher helper to make json or http req

@@ -1,22 +1,18 @@
-export const state = () => ({
-  items: [],
-  loading: true
-})
-
-export const mutations = {
-  loading(state, value) {
-    state.loading = value
-  },
-  setTodos(state, items) {
-    state.items = items
+const initial = () => {
+  return {
+    loading: false,
+    items: []
   }
 }
-
+// initial state
+export const state = initial()
+export const mutations = {
+  RESET (state) {
+    Object.assign(state, initial())
+  }
+}
 export const actions = {
-  async index({commit}, fetchType) {
-    commit('loading', true)
-    let result = await this.$api.fetcher({entity: 'todos', type: fetchType})
-    commit('setTodos', result)
-    commit('loading', false)
+  reset ({ commit }) {
+    commit('RESET')
   }
 }

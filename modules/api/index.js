@@ -12,7 +12,7 @@ export default function nuxtAPI (moduleOptions) {
     src: path.resolve(__dirname, 'plugin.js'),
     options: {
       staticPath: options.staticPath,
-      paths: options.endpoints
+      paths: options.resources
     }
   })
 
